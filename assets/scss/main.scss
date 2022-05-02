@@ -1,0 +1,67 @@
+// $baseColor: #7D1B7E;
+$baseColor: #8b008b;
+$white: #fffaf0;
+$headerHeight: 60px;
+
+@mixin flex-col-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+body {
+	font-family: 'Nunito',
+		sans-serif;
+	font-size: 14px;
+}
+
+.container {
+	max-width: 800px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.header {
+	color: $white;
+	width: 100%;
+	height: 60px;
+	border: 1px solid black;
+	background-color: $baseColor;
+
+	&__wrapper {
+		@include flex-col-center;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__title {
+		text-align: left;
+		font-weight: 800;
+		font-size: 26px;
+	}
+}
+
+.login {
+	@include flex-col-center;
+	width: 90px;
+
+	&__title {
+		font-size: 20px;
+	}
+
+	&__icon {
+		width: 30px;
+		height: 30px;
+
+		& svg {
+			fill: $white;
+		}
+	}
+}
+
+.main {
+	width: 100vw;
+	height: calc(100vh -$headerHeight);
+}
