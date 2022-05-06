@@ -17,30 +17,45 @@
 	<header class="header">
 		<div class="container">
 			<div class="header__wrapper">
-				<h1 class="header__title">My notes</h1>
+				<div class="header__nav-title">
+					<div class="header__nav nav">
+						<img src="./assets/images/icons/menu.svg" alt="">
+					</div>
+					<h1 class="header__title">My notes</h1>
+				</div>
 				<div class="header__login login">
 					<div class="login__title">Login</div>
 					<div class="login__icon">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-							<!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-							<path
-								d="M256 112c-48.6 0-88 39.4-88 88C168 248.6 207.4 288 256 288s88-39.4 88-88C344 151.4 304.6 112 256 112zM256 240c-22.06 0-40-17.95-40-40C216 177.9 233.9 160 256 160s40 17.94 40 40C296 222.1 278.1 240 256 240zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-46.73 0-89.76-15.68-124.5-41.79C148.8 389 182.4 368 220.2 368h71.69c37.75 0 71.31 21.01 88.68 54.21C345.8 448.3 302.7 464 256 464zM416.2 388.5C389.2 346.3 343.2 320 291.8 320H220.2c-51.36 0-97.35 26.25-124.4 68.48C65.96 352.5 48 306.3 48 256c0-114.7 93.31-208 208-208s208 93.31 208 208C464 306.3 446 352.5 416.2 388.5z" />
-						</svg>
-						<!-- <img src="./assets/images/icons/user-circle.svg" alt=""> -->
-						<!-- <i class="fa fa-user fa-2x"></i> -->
+						<img src="./assets/images/icons/user-circle.svg" alt="">
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</header>
 	<main class="main">
 		<div class="container">
-
-		</div>
+			<div class="main__wrapper notes">
+				<!-- <div class="view__add-note add-note">
+					<div class="add-note__title">Создать заметку</div>
+					<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+						<path
+							d="M23 33.5H25.25V25.3H33.5V23H25.25V14.5H23V23H14.5V25.3H23ZM24 43Q20 43 16.525 41.55Q13.05 40.1 10.475 37.525Q7.9 34.95 6.45 31.475Q5 28 5 24Q5 20 6.45 16.55Q7.9 13.1 10.475 10.525Q13.05 7.95 16.525 6.475Q20 5 24 5Q28 5 31.45 6.475Q34.9 7.95 37.475 10.525Q40.05 13.1 41.525 16.55Q43 20 43 24Q43 28 41.525 31.475Q40.05 34.95 37.475 37.525Q34.9 40.1 31.45 41.55Q28 43 24 43ZM24 24Q24 24 24 24Q24 24 24 24Q24 24 24 24Q24 24 24 24Q24 24 24 24Q24 24 24 24Q24 24 24 24Q24 24 24 24ZM24 40.75Q30.9 40.75 35.825 35.825Q40.75 30.9 40.75 24Q40.75 17.1 35.825 12.175Q30.9 7.25 24 7.25Q17.1 7.25 12.175 12.175Q7.25 17.1 7.25 24Q7.25 30.9 12.175 35.825Q17.1 40.75 24 40.75Z" />
+					</svg>
+				</div> -->
+			</div>
+			<div class="main__wrapper view">
+				<form action="#" class="view__note-form note-form">
+					<input type="text" class="note-form__title" id="notetitle" placeholder="Название">
+					<textarea class="note-form__text" name="notetext" id="notetext" cols="30" rows="10"></textarea>
+					<div class="note-form__button-wrapper">
+						<button class="note-form__button button--cancel" type="button" value="Отменить">Очистить</button>
+						<button class="note-form__button button--submit" type="submit" value="Сохранить">Сохранить</button>
+					</div>
+				</form>
+			</div>
 	</main>
 
-	<script src="https://kit.fontawesome.com/e6f7138599.js" crossorigin="anonymous"></script>
+
 	<script src="./assets/js/script.js"></script>
 </body>
 

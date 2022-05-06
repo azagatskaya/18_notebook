@@ -3,10 +3,17 @@ $baseColor: #8b008b;
 $white: #fffaf0;
 $headerHeight: 60px;
 
-@mixin flex-col-center {
+@mixin flex-row-center {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
+}
+
+@mixin flex-col-start {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
 }
 
@@ -16,22 +23,32 @@ body {
 	font-size: 14px;
 }
 
-.container {
-	max-width: 800px;
+.header .container {
+	max-width: 700px;
 	height: 100%;
 	margin: 0 auto;
 	padding: 0 10px;
 }
 
+
 .header {
 	color: $white;
 	width: 100%;
 	height: 60px;
-	border: 1px solid black;
 	background-color: $baseColor;
 
+	&__nav-title {
+		@include flex-row-center;
+	}
+
+	&__nav {
+		height: 45px;
+		width: 45px;
+		margin: 0 10px 2px 0;
+	}
+
 	&__wrapper {
-		@include flex-col-center;
+		@include flex-row-center;
 		width: 100%;
 		height: 100%;
 	}
@@ -44,24 +61,186 @@ body {
 }
 
 .login {
-	@include flex-col-center;
-	width: 90px;
+	@include flex-row-center;
 
 	&__title {
 		font-size: 20px;
+		padding-right: 7px;
+
+		@media screen and (max-width: 540px) {
+			display: none;
+		}
 	}
 
 	&__icon {
 		width: 30px;
 		height: 30px;
+	}
+}
 
-		& svg {
-			fill: $white;
+.main .container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	max-width: 700px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 10px;
+
+	@media screen and (max-width: 540px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+
+.main {
+	padding: 20px 0;
+	width: 100%;
+	height: calc(100vh - 60px);
+
+	.main__wrapper {
+		@include flex-col-start;
+		padding: 0 5px;
+
+		&.notes {
+			width: 45%;
+
+			@media screen and (max-width: 540px) {
+				width: 100%;
+			}
+		}
+
+		&.view {
+			width: 55%;
+			height: 100%;
+
+			@media screen and (max-width: 540px) {
+				width: 100%;
+			}
 		}
 	}
 }
 
-.main {
-	width: 100vw;
-	height: calc(100vh -$headerHeight);
+.row {
+	@include flex-row-center;
+	width: 100%;
+	height: 100%;
+}
+
+.note {
+	@include flex-row-center;
+	margin: 7px;
+	border: 1px solid lightgrey;
+	box-shadow: 1px 1px 2px lightgrey;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 1px 1px 4px #d3d3d3,
+			-1px -1px 4px lightgrey;
+	}
+
+	&__title {
+		padding: 0 7px;
+		width: 100%;
+		height: 100%;
+		font-weight: 600;
+		line-height: 1.9;
+
+	}
+
+	&__options {
+		@include flex-row-center;
+		width: 80px;
+	}
+
+	&__option {
+		width: 18px;
+		height: 18px;
+		margin: 0 3px;
+
+		& img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.view {
+	@include flex-col-start;
+}
+
+.add-note {
+	@include flex-row-center;
+	justify-content: flex-end;
+	width: 100%;
+
+	&__title {
+		padding-right: 5px;
+	}
+
+	& svg {
+		fill: #9b219b;
+
+		&:hover {
+			fill: #d55bd5;
+			cursor: pointer;
+		}
+
+	}
+
+}
+
+.note-form {
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 80%;
+	width: 100%;
+	padding: 5px;
+	margin-top: 3px;
+	border: 1px solid lightgrey;
+	box-shadow: 1px 1px 2px lightgrey;
+
+	&__title {
+		border-bottom: 1px solid lightgrey;
+		width: 100%;
+		height: 30px;
+		font-size: 16px;
+		font-weight: 500;
+		padding: 0 5px;
+	}
+
+	&__text {
+		width: 100%;
+		height: 80%;
+	}
+
+	&__button {
+		height: 30px;
+		width: 130px;
+		margin: 0 5px;
+		background-color: #f1c40f;
+		color: $white;
+		font-size: 16px;
+		text-shadow: 1px 1px 1px #dfb40c;
+		font-weight: 600;
+
+		&:hover {
+			background-color: #ffdd1f;
+		}
+
+		&-wrapper {
+			width: 90%;
+			@include flex-row-center;
+			padding: 10px;
+			color: #808080;
+		}
+	}
 }

@@ -3,8 +3,8 @@ body {
   font-size: 14px;
 }
 
-.container {
-  max-width: 800px;
+.header .container {
+  max-width: 700px;
   height: 100%;
   margin: 0 auto;
   padding: 0 10px;
@@ -14,8 +14,18 @@ body {
   color: #fffaf0;
   width: 100%;
   height: 60px;
-  border: 1px solid black;
   background-color: #8b008b;
+}
+.header__nav-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__nav {
+  height: 45px;
+  width: 45px;
+  margin: 0 10px 2px 0;
 }
 .header__wrapper {
   display: flex;
@@ -36,20 +46,187 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90px;
 }
 .login__title {
   font-size: 20px;
+  padding-right: 7px;
+}
+@media screen and (max-width: 540px) {
+  .login__title {
+    display: none;
+  }
 }
 .login__icon {
   width: 30px;
   height: 30px;
 }
-.login__icon svg {
-  fill: #fffaf0;
+
+.main .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 700px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+@media screen and (max-width: 540px) {
+  .main .container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .main {
-  width: 100vw;
-  height: calc(100vh -$headerHeight);
+  padding: 20px 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+.main .main__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 5px;
+}
+.main .main__wrapper.notes {
+  width: 45%;
+}
+@media screen and (max-width: 540px) {
+  .main .main__wrapper.notes {
+    width: 100%;
+  }
+}
+.main .main__wrapper.view {
+  width: 55%;
+  height: 100%;
+}
+@media screen and (max-width: 540px) {
+  .main .main__wrapper.view {
+    width: 100%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 7px;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 2px lightgrey;
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+}
+.note:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 4px #d3d3d3, -1px -1px 4px lightgrey;
+}
+.note__title {
+  padding: 0 7px;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  line-height: 1.9;
+}
+.note__options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80px;
+}
+.note__option {
+  width: 18px;
+  height: 18px;
+  margin: 0 3px;
+}
+.note__option img {
+  width: 100%;
+  height: 100%;
+}
+
+.view {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.add-note {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+.add-note__title {
+  padding-right: 5px;
+}
+.add-note svg {
+  fill: #9b219b;
+}
+.add-note svg:hover {
+  fill: #d55bd5;
+  cursor: pointer;
+}
+
+.note-form {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  padding: 5px;
+  margin-top: 3px;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 2px lightgrey;
+}
+.note-form__title {
+  border-bottom: 1px solid lightgrey;
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 5px;
+}
+.note-form__text {
+  width: 100%;
+  height: 80%;
+}
+.note-form__button {
+  height: 30px;
+  width: 130px;
+  margin: 0 5px;
+  background-color: #f1c40f;
+  color: #fffaf0;
+  font-size: 16px;
+  text-shadow: 1px 1px 1px #dfb40c;
+  font-weight: 600;
+}
+.note-form__button:hover {
+  background-color: #ffdd1f;
+}
+.note-form__button-wrapper {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: #808080;
 }
