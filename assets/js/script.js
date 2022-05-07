@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
-			
+
 			previewBlock.append(element);
 			element.append(elTitle);
 			element.append(optionsDiv);
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	}
 
 	getNotesFromLs();
-	generateNotes();
+	setTimeout(generateNotes(), 5000);
 
 	function generateNotes() {
 		const note1 = new Note('Моя первая заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', +new Date());
