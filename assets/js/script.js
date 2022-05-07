@@ -1,10 +1,10 @@
 'use strict';
 window.addEventListener('DOMContentLoaded', function () {
 	class Note {
-		constructor(noteTitle, noteContent, timestamp) {
+		constructor(noteTitle, noteContent, id) {
 			this.noteTitle = noteTitle;
 			this.noteContent = noteContent;
-			this.timestamp = timestamp;
+			this.id = id;
 		}
 
 		render() {
@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', function () {
 			element.classList.add('note');
 			const elTitle = document.createElement('div');
 			elTitle.classList.add('note__title');
-			elTitle.setAttribute('id', this.timestamp);
+			elTitle.setAttribute('id', this.id);
 			elTitle.innerText = this.noteTitle;
 			elTitle.addEventListener('click', handleNoteCardClick);
 			const optionsDiv = document.createElement('div');
@@ -31,10 +31,6 @@ window.addEventListener('DOMContentLoaded', function () {
 			deleteDiv.classList.add('option--delete');
 			deleteDiv.innerHTML = '<img src="./assets/images/icons/delete.svg"	alt="delete">';
 			deleteDiv.addEventListener('click', handleDeleteClick);
-
-
-
-
 			previewBlock.append(element);
 			element.append(elTitle);
 			element.append(optionsDiv);
@@ -42,38 +38,12 @@ window.addEventListener('DOMContentLoaded', function () {
 		}
 
 		saveToLS() {
-			const keyName = 'note' + this.timestamp;
-			localStorage.setItem(keyName, [this.noteTitle + '_', this.noteContent]);
-		}
-	}
-
-	getNotesFromLs();
-	setTimeout(generateNotes(), 5000);
-
-	function generateNotes() {
-		const note1 = new Note('Моя первая заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', +new Date());
-		note1.render();
-		note1.saveToLS();
-
-		const note2 = new Note('Вторая', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', +new Date());
-		note2.render();
-		note2.saveToLS();
-
-		const note3 = new Note('Еще одна важная заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', +new Date());
-		note3.render();
-		note3.saveToLS();
-	}
-
-	function getNotesFromLs() {
-		for (let key in localStorage) {
-			let prefix = key.slice(0, 4);
-			if (prefix === 'note') {
-				let value = localStorage.getItem(key).split('_,');
-				let title = value[0];
-				let content = value[1];
-				let timestamp = key.slice(4);
-				new Note(title, content, timestamp).render();
-			}
+			// const keyName = this.timestamp;
+			// const value = (`["${this.noteTitle}","${this.noteContent}"]`);
+			const value = JSON.stringify([this.noteTitle, this.noteContent]);
+			localStorage.setItem('note' + this.id, value);
+			// localStorage.setItem(this.noteTitle, value);
+			// console.log(value);
 		}
 	}
 
@@ -81,32 +51,44 @@ window.addEventListener('DOMContentLoaded', function () {
 	const noteContent = document.querySelector('.note-form__text');
 	const submitBtn = document.querySelector('.button--submit');
 	const cancelBtn = document.querySelector('.button--cancel');
-	const noteCards = document.querySelectorAll('.note__title');
-	const deleteBtns = document.querySelectorAll('.option--delete');
+	let id = 0;
 
+	generateNotes();
+	getNotesFromLs();
+
+	function getId() {
+		return id++;
+	}
+
+	function generateNotes() {
+		new Note('Моя первая заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', getId()).saveToLS();
+
+		new Note('Вторая', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id, voluptatibus fugiat nulla quibusdam cumque reprehenderit officiis ipsa. Aperiam voluptatibus pariatur ullam, facilis laborum eos assumenda consequuntur vero sunt quos.', getId()).saveToLS();
+
+		new Note('Еще одна важная заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate esse minima, ex asperiores culpa quidem dolore illum officia, eligendi, sunt harum iste eaque voluptate dignissimos architecto pariatur deserunt porro modi.', getId()).saveToLS();
+	}
+
+	function getNotesFromLs() {
+		for (let key in localStorage) {
+			const prefix = key.slice(0, 4);
+			if (prefix === 'note') {
+				const value = JSON.parse(localStorage[key]);
+				const title = value[0];
+				const content = value[1];
+				const id = key.slice(4);
+				new Note(title, content, id).render();
+			}
+		}
+	}
 
 	cancelBtn.addEventListener('click', handleResetClick);
 	submitBtn.addEventListener('click', handleSubmitClick);
-	addListenersToNoteCards(noteCards);
-	addListenersToDeleteBtns(deleteBtns);
-
-	function addListenersToNoteCards(noteCards) {
-		noteCards.forEach(card => {
-			card.addEventListener('click', handleNoteCardClick);
-		});
-	}
-
-	function addListenersToDeleteBtns(deleteBtns) {
-		deleteBtns.forEach(el => {
-			el.addEventListener('click', handleDeleteClick);
-		});
-	}
 
 	function handleSubmitClick(e) {
 		e.preventDefault();
-		const timestamp = +new Date();
-		localStorage.setItem('note' + timestamp, [noteTitle.value + '_', noteContent.value]);
-		new Note(noteTitle.value, noteContent.value, timestamp).render();
+		const note = new Note(noteTitle.value, noteContent.value, getId());
+		note.render();
+		note.saveToLS();
 	}
 
 	function handleResetClick() {
@@ -116,15 +98,32 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	function handleNoteCardClick(e) {
 		noteTitle.value = e.target.innerText;
-		noteContent.value = localStorage.getItem('note' + e.target.id).split('_,')[1];
+		noteContent.value = JSON.parse(localStorage.getItem('note' + e.target.id))[1];
 	}
 
 	function handleDeleteClick(e) {
-		const timestamp = e.target.parentNode.parentNode.parentNode.firstElementChild.id;
-		console.log(e.target.parentNode.parentNode.parentNode.firstElementChild);
-		localStorage.removeItem('note' + timestamp);
+		const id = e.target.parentNode.parentNode.parentNode.firstElementChild.id;
+		localStorage.removeItem('note' + id);
 		e.target.parentNode.parentNode.parentNode.remove();
-
 	}
 
 });
+
+// Listeners for noteCard & deleteBtns
+
+// const noteCards = document.querySelectorAll('.note__title');
+// const deleteBtns = document.querySelectorAll('.option--delete');
+// addListenersToNoteCards(noteCards);
+// addListenersToDeleteBtns(deleteBtns);
+
+// function addListenersToNoteCards(noteCards) {
+// 	noteCards.forEach(card => {
+// 		card.addEventListener('click', handleNoteCardClick);
+// 	});
+// }
+
+// function addListenersToDeleteBtns(deleteBtns) {
+// 	deleteBtns.forEach(el => {
+// 		el.addEventListener('click', handleDeleteClick);
+// 	});
+// }
