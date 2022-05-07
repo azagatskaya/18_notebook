@@ -38,12 +38,8 @@ window.addEventListener('DOMContentLoaded', function () {
 		}
 
 		saveToLS() {
-			// const keyName = this.timestamp;
-			// const value = (`["${this.noteTitle}","${this.noteContent}"]`);
 			const value = JSON.stringify([this.noteTitle, this.noteContent]);
 			localStorage.setItem('note' + this.id, value);
-			// localStorage.setItem(this.noteTitle, value);
-			// console.log(value);
 		}
 	}
 
