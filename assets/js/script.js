@@ -1,5 +1,5 @@
 'use strict';
-window.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
 	class Note {
 		constructor(noteTitle, noteContent, id) {
 			this.noteTitle = noteTitle;
@@ -85,6 +85,7 @@ window.addEventListener('DOMContentLoaded', function () {
 		const note = new Note(noteTitle.value, noteContent.value, getId());
 		note.render();
 		note.saveToLS();
+		handleResetClick();
 	}
 
 	function handleResetClick() {
