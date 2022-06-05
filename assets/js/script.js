@@ -1,4 +1,43 @@
 'use strict';
+
+const notes = [{
+		name: 'Накрасить ногти',
+		text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!',
+		date: '2022-05-15'
+	},
+	{
+		name: 'Домашка по валидации',
+		text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id, voluptatibus fugiat nulla quibusdam cumque reprehenderit officiis ipsa. Aperiam voluptatibus pariatur ullam, facilis laborum eos assumenda consequuntur vero sunt quos.',
+		date: '2022-05-15'
+	},
+	{
+		name: 'Почитать про алгоритмы',
+		text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate esse minima, ex asperiores culpa quidem dolore illum officia, eligendi, sunt harum iste eaque voluptate dignissimos architecto pariatur deserunt porro modi.',
+		date: '2022-06-03'
+	},
+	{
+		name: 'Сделать домашку по API',
+		text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, reprehenderit est dolorem similique reiciendis culpa? Id animi, illo quaerat, harum distinctio earum ipsam minus voluptatibus rem blanditiis, iste omnis iure?',
+		date: '2022-05-27'
+	},
+	{
+		name: 'Погулять с собакой',
+		text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, reprehenderit est dolorem',
+		date: '2022-06-03'
+	},
+	{
+		name: 'Заняться спортом',
+		text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, reprehenderit est dolorem',
+		date: '2022-05-27'
+	},
+	{
+		name: 'Почитать про алгоритмы',
+		text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id, voluptatibus fugiat nulla quibusdam cumque reprehenderit officiis ipsa. Aperiam voluptatibus pariatur ullam, facilis laborum eos assumenda consequuntur vero sunt quos.',
+		date: '2022-05-27'
+	}
+];
+
+
 document.addEventListener('DOMContentLoaded', function () {
 	class Note {
 		constructor(noteTitle, noteContent, id) {
@@ -57,11 +96,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	function generateNotes() {
-		new Note('Моя первая заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', getId()).saveToLS();
 
-		new Note('Вторая', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id, voluptatibus fugiat nulla quibusdam cumque reprehenderit officiis ipsa. Aperiam voluptatibus pariatur ullam, facilis laborum eos assumenda consequuntur vero sunt quos.', getId()).saveToLS();
+		notes.forEach(note => {
+			new Note(note.name, note.text, getId()).saveToLS();
+		})
+		// new Note('Моя первая заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', getId()).saveToLS();
 
-		new Note('Еще одна важная заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate esse minima, ex asperiores culpa quidem dolore illum officia, eligendi, sunt harum iste eaque voluptate dignissimos architecto pariatur deserunt porro modi.', getId()).saveToLS();
+		// new Note('Вторая', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id, voluptatibus fugiat nulla quibusdam cumque reprehenderit officiis ipsa. Aperiam voluptatibus pariatur ullam, facilis laborum eos assumenda consequuntur vero sunt quos.', getId()).saveToLS();
+
+		// new Note('Еще одна важная заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate esse minima, ex asperiores culpa quidem dolore illum officia, eligendi, sunt harum iste eaque voluptate dignissimos architecto pariatur deserunt porro modi.', getId()).saveToLS();
 	}
 
 	function getNotesFromLs() {
