@@ -189,7 +189,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 80%;
+  height: 40%;
   width: 100%;
   padding: 5px;
   margin-top: 7px;
@@ -203,6 +203,10 @@ body {
   font-size: 16px;
   font-weight: 500;
   padding: 0 5px;
+}
+.note-form__date {
+  width: 100%;
+  height: 30px;
 }
 .note-form__text {
   width: 100%;
@@ -229,4 +233,10 @@ body {
   align-items: center;
   padding: 10px;
   color: #808080;
+}
+
+#myChart {
+  margin: 20px 0;
+  height: 300px;
+  width: 100% !important;
 }
