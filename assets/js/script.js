@@ -100,11 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		notes.forEach(note => {
 			new Note(note.name, note.text, getId()).saveToLS();
 		})
-		// new Note('Моя первая заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita quaerat nulla debitis accusamus mollitia natus, eveniet provident animi nihil, tenetur quia fugit laborum ex error ut blanditiis doloremque, maiores architecto!', getId()).saveToLS();
-
-		// new Note('Вторая', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id, voluptatibus fugiat nulla quibusdam cumque reprehenderit officiis ipsa. Aperiam voluptatibus pariatur ullam, facilis laborum eos assumenda consequuntur vero sunt quos.', getId()).saveToLS();
-
-		// new Note('Еще одна важная заметка', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate esse minima, ex asperiores culpa quidem dolore illum officia, eligendi, sunt harum iste eaque voluptate dignissimos architecto pariatur deserunt porro modi.', getId()).saveToLS();
 	}
 
 	function getNotesFromLs() {
