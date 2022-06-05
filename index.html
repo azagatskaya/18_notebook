@@ -45,6 +45,7 @@
 			</div>
 			<div class="main__wrapper view">
 				<form action="#" class="view__note-form note-form">
+					<input type="date" class="note-form__date" id="notedate" placeholder="Дата">
 					<input type="text" class="note-form__title" id="notetitle" placeholder="Название">
 					<textarea class="note-form__text" name="notetext" id="notetext" cols="30" rows="10"></textarea>
 					<div class="note-form__button-wrapper">
@@ -52,11 +53,14 @@
 						<button class="note-form__button button--submit" type="submit" value="Сохранить">Сохранить</button>
 					</div>
 				</form>
+				<section class="main__charts">
+					<canvas id="myChart" width="360" height="200"></canvas>
+				</section>
 			</div>
 	</main>
 
 
-	<script src="./assets/js/script.js"></script>
+	<script src="./assets/js/bundle.js"></script>
 
 </body>
 
