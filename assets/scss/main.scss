@@ -18,8 +18,7 @@ $headerHeight: 60px;
 }
 
 body {
-	font-family: 'Nunito',
-		sans-serif;
+	font-family: 'Nunito', sans-serif;
 	font-size: 14px;
 }
 
@@ -148,7 +147,6 @@ body {
 		height: 100%;
 		font-weight: 600;
 		line-height: 1.9;
-
 	}
 
 	&__options {
@@ -216,8 +214,11 @@ body {
 	}
 
 	&__date {
-		width: 100%;
+		align-self: flex-end;
+		text-align: right;
+		width: 70%;
 		height: 30px;
+		font-size: 15px;
 	}
 
 	&__text {
